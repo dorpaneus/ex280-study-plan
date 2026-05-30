@@ -53,3 +53,33 @@ ex280-study-plan/
 ├── 10-storage.md           ← StorageClasses, PVCs
 ├── cheatsheet.md           ← Quick reference
 └── mock-exams/             ← Weekly timed drills
+
+---
+
+## ✅ How to use this repo
+
+1. **Stand up your lab first.** Don't postpone this — see `lab-setup.md`. CRC 2.x runs OCP 4.18 on a laptop with 16 GB RAM.
+2. **Read one objective file at a time.** Each ends with a "Drills" block — actually do them.
+3. **Type every command yourself.** Muscle memory beats reading. Especially imperative `oc` commands with `--dry-run=client -o yaml`.
+4. **At the exam you only get the official OpenShift docs at <https://docs.redhat.com>.** Practice navigating it now — `docs.redhat.com/en/documentation/openshift_container_platform/4.18`.
+5. **Take every mock exam under exam conditions:** timer running, docs tab only, no Google, no AI.
+6. **After each mock, journal what you missed** and add a row to the bottom of the relevant objective file in a "Gaps" section.
+
+---
+
+
+---
+
+## 🎓 Passing score & exam logistics
+
+- **Duration:** 3 hours, single section
+- **Passing score:** 210 / 300 (70%)
+- **Format:** Performance-based on a live OCP 4.18 cluster
+- **Reference allowed:** Official OCP 4.18 documentation only — no internet, no notes
+- **Persistence rule:** Everything must survive a node reboot
+
+Good luck — see you on the other side of the cert. 🏅
+
+— Maintainer notes: All `oc` examples and YAMLs target **OCP 4.18 / oc client 4.18+**. If you spot drift in a future minor release, file an issue.
+
+---
