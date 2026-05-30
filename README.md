@@ -53,6 +53,7 @@ ex280-study-plan/
 ├── 10-storage.md           ← StorageClasses, PVCs
 ├── cheatsheet.md           ← Quick reference
 └── mock-exams/             ← Weekly timed drills
+```
 
 ---
 
@@ -79,7 +80,5 @@ ex280-study-plan/
 - **Persistence rule:** Everything must survive a node reboot
 
 Good luck — see you on the other side of the cert. 🏅
-
-— Maintainer notes: All `oc` examples and YAMLs target **OCP 4.18 / oc client 4.18+**. If you spot drift in a future minor release, file an issue.
 
 ---
