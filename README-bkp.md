@@ -139,15 +139,3 @@ Each day has **Theory** (read & take notes), **Labs** (hands-on in your cluster)
 6. **After each mock, journal what you missed** and add a row to the bottom of the relevant objective file in a "Gaps" section.
 
 ---
-
-## 🎓 Passing score & exam logistics
-
-- **Duration:** 3 hours, single section
-- **Passing score:** 210 / 300 (70%)
-- **Format:** Performance-based on a live OCP 4.18 cluster
-- **Reference allowed:** Official OCP 4.18 documentation only — no internet, no notes
-- **Persistence rule:** Everything must survive a node reboot
-
-Good luck — see you on the other side of the cert. 🏅
-
-— Maintainer notes: All `oc` examples and YAMLs target **OCP 4.18 / oc client 4.18+**. If you spot drift in a future minor release, file an issue.
