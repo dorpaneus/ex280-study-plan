@@ -126,16 +126,3 @@ Each day has **Theory** (read & take notes), **Labs** (hands-on in your cluster)
 | 28 | **🧪 Final 3-h Mock Exam** | — | [`mock-exams/final-exam-3h.md`](./mock-exams/final-exam-3h.md) under exam conditions | — |
 | 29 | **Post-mortem + targeted fixes** | Review every missed item | Retry the missed tasks until 100% | — |
 | 30 | **Light review + rest** | Skim `cheatsheet.md` | Single end-to-end run-through, then stop early | Sleep well 😴 |
-
----
-
-## ✅ How to use this repo
-
-1. **Stand up your lab first.** Don't postpone this — see `lab-setup.md`. CRC 2.x runs OCP 4.18 on a laptop with 16 GB RAM.
-2. **Read one objective file at a time.** Each ends with a "Drills" block — actually do them.
-3. **Type every command yourself.** Muscle memory beats reading. Especially imperative `oc` commands with `--dry-run=client -o yaml`.
-4. **At the exam you only get the official OpenShift docs at <https://docs.redhat.com>.** Practice navigating it now — `docs.redhat.com/en/documentation/openshift_container_platform/4.18`.
-5. **Take every mock exam under exam conditions:** timer running, docs tab only, no Google, no AI.
-6. **After each mock, journal what you missed** and add a row to the bottom of the relevant objective file in a "Gaps" section.
-
----
