@@ -75,9 +75,6 @@ ex280-study-plan/
 
 ---
 
-
----
-
 ## 🎓 Passing score & exam logistics
 
 - **Duration:** 3 hours, single section
