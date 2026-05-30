@@ -51,8 +51,15 @@ ex280-study-plan/
 ├── 08-operators.md         ← OLM, Subscriptions
 ├── 09-app-security.md      ← SCCs, ServiceAccounts
 ├── 10-storage.md           ← StorageClasses, PVCs
-├── cheatsheet.md           ← Quick reference
-└── mock-exams/             ← Weekly timed drills
+├── cheatsheet.md           ← One-page `oc` & YAML quick reference
+├── resources.md            ← Docs, videos, books, additional repos
+└── mock-exams/
+    ├── week1-mock.md                  ← 30 min, Obj 1–2
+    ├── week2-mock.md                  ← 60 min, Obj 1–4
+    ├── week3-mock.md                  ← 90 min, Obj 1–7
+    ├── week4-mock.md                  ← 120 min, all objectives
+    └── final-exam-3h.md               ← Full 3-hour exam simulation
+
 ```
 
 ---
