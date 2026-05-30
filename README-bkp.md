@@ -43,14 +43,7 @@ ex280-study-plan/
 ├── 07-developer-self-service.md       ← Quotas, limit ranges, project templates
 ├── 08-openshift-operators.md          ← OLM, install/uninstall/delete operators
 ├── 09-application-security.md         ← SCCs, service accounts, secrets, jobs/cronjobs
-├── cheatsheet.md                      ← One-page `oc` & YAML quick reference
-├── resources.md                       ← Docs, videos, books, additional repos
-└── mock-exams/
-    ├── week1-mock.md                  ← 30 min, Obj 1–2
-    ├── week2-mock.md                  ← 60 min, Obj 1–4
-    ├── week3-mock.md                  ← 90 min, Obj 1–7
-    ├── week4-mock.md                  ← 120 min, all objectives
-    └── final-exam-3h.md               ← Full 3-hour exam simulation
+
 ```
 
 ---
