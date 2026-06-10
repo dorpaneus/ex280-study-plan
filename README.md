@@ -68,7 +68,7 @@ ex280-study-plan/
 | 7 | Enable developer self-service | [`07-developer-self-service.md`](./07-developer-self-service.md) |
 | 8 | Manage OpenShift operators | [`08-openshift-operators.md`](./08-openshift-operators.md) |
 | 9 | Configure application security | [`09-application-security.md`](./09-application-security.md) |
-| ★ | **Supplement: Storage (PV/PVC/SC)** — dropped from formal 4.18 objectives but still surfaces in stateful-app tasks | [`10-storage-supplement.md`](./10-storage-supplement.md) |
+| ★ | **Supplement: Storage (PV/PVC/SC)** - dropped from formal 4.18 objectives but still surfaces in stateful-app tasks | [`10-storage-supplement.md`](./10-storage-supplement.md) |
 
 > Red Hat rule: **all configurations must persist after reboot without intervention.** Use `oc`/YAML — never edit files on nodes by hand.
 
