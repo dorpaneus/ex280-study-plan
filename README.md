@@ -70,7 +70,7 @@ ex280-study-plan/
 | 9 | Configure application security | [`09-application-security.md`](./09-application-security.md) |
 | ★ | **Supplement: Storage (PV/PVC/SC)** - dropped from formal 4.18 objectives but still surfaces in stateful-app tasks | [`10-storage-supplement.md`](./10-storage-supplement.md) |
 
-> Red Hat rule: **all configurations must persist after reboot without intervention.** Use `oc`/YAML — never edit files on nodes by hand.
+> Red Hat rule: **all configurations must persist after reboot without intervention.** Use `oc`/YAML - never edit files on nodes by hand.
 
 > Note on storage: Red Hat removed "Provision persistent storage volumes and use storage classes" as a standalone objective when moving from EX280 v4.14 → v4.18. It now lives implicitly inside "Deploy applications" (stateful workloads) and "Work with resource manifests" (PVC YAML). The supplement chapter (`10-storage-supplement.md`) covers it so you can complete the mock-exam tasks that use PVCs (Postgres, Mongo, etc.).
 
@@ -80,17 +80,17 @@ ex280-study-plan/
 
 Each day has **Theory** (read & take notes), **Labs** (hands-on in your cluster), and a **Drill** (timed repetition without docs). Day 7/14/21/28/30 host the mock exams.
 
-### Week 1 — Foundations, Cluster Ops, Manifests
+### Week 1 - Foundations, Cluster Ops, Manifests
 
 | Day | Theme | Theory (~1 h) | Labs (~2 h) | Drill (~30 min) |
 |-----|-------|---------------|-------------|------------------|
 | 1 | **Lab setup + exam orientation** | Read `00-exam-overview.md` + `lab-setup.md`. Skim official objectives. | Install CRC 2.x **or** sign up for Red Hat Developer Sandbox (4.18). Verify `oc login`. | Run `oc api-resources`; explore `oc explain pod.spec.containers` |
-| 2 | **Obj 1 – Cluster basics** | `01-manage-ocp.md` §1–4 (console, CLI, projects, images) | Lab 1.1–1.3 | Create / delete projects under 30 s |
-| 3 | **Obj 1 – Observability + updates** | `01-manage-ocp.md` §5–9 (events, logs, troubleshooting, OCP updates) | Lab 1.4–1.6 | Tail pod logs; list cluster operators |
-| 4 | **Obj 2 – Manifests intro** | `02-resource-manifests.md` §1–3 | Lab 2.1–2.2 | Write a Deployment YAML from scratch in 5 min |
-| 5 | **Obj 2 – Kustomize, secrets, CMs** | `02-resource-manifests.md` §4–6 | Lab 2.3–2.4 | Build a base + overlay in 10 min |
+| 2 | **Obj 1 - Cluster basics** | `01-manage-ocp.md` §1-4 (console, CLI, projects, images) | Lab 1.1-1.3 | Create / delete projects under 30 s |
+| 3 | **Obj 1 - Observability + updates** | `01-manage-ocp.md` §5-9 (events, logs, troubleshooting, OCP updates) | Lab 1.4-1.6 | Tail pod logs; list cluster operators |
+| 4 | **Obj 2 - Manifests intro** | `02-resource-manifests.md` §1-3 | Lab 2.1-2.2 | Write a Deployment YAML from scratch in 5 min |
+| 5 | **Obj 2 - Kustomize, secrets, CMs** | `02-resource-manifests.md` §4-6 | Lab 2.3-2.4 | Build a base + overlay in 10 min |
 | 6 | **Review + speed drills** | Re-read weak sections | Combine: deploy from YAML, edit, scale, expose | Generate any resource with `--dry-run=client -o yaml` |
-| 7 | **🧪 Week 1 Mock Exam** | — | [`mock-exams/week1-mock.md`](./mock-exams/week1-mock.md) (30 min) + review | — |
+| 7 | **🧪 Week 1 Mock Exam** | n/a | [`mock-exams/week1-mock.md`](./mock-exams/week1-mock.md) (30 min) + review | n/a |
 
 ### Week 2 — Application Deployment + Authentication
 
