@@ -1,4 +1,4 @@
-# EX280 — Red Hat Certified System Administrator in OpenShift — 30-Day Study Plan
+# EX280 - Red Hat Certified System Administrator in OpenShift ~30-Day Study Plan
 
 > **Target version: OpenShift Container Platform 4.18 (latest, released Dec 2025).**
 > This repo is a merged & sorted curriculum derived from:
