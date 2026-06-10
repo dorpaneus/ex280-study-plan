@@ -1,4 +1,4 @@
-# Objective 1 — Manage OpenShift Container Platform
+# Objective 1 - Manage OpenShift Container Platform
 
 > **Exam study points (verbatim from Red Hat):**
 > - Use the web console to manage and configure an OpenShift cluster
