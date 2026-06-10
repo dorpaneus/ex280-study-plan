@@ -1,6 +1,6 @@
 <div align="center">
 
-[⬅️ Prev: Manage OpenShift Container Platform](../01-manage-ocp.md) &nbsp;·&nbsp; [🏠 Home](../README.md) &nbsp;·&nbsp; [Next: Deploy applications ➡️](../03-deploy-applications.md)
+[⬅️ Prev: Manage OpenShift Container Platform](./01-manage-ocp.md) &nbsp;·&nbsp; [🏠 Home](../README.md) &nbsp;·&nbsp; [Next: Deploy applications ➡️](./03-deploy-applications.md)
 
 </div>
 
