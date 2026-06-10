@@ -5,7 +5,7 @@
 > - The [official Red Hat EX280 objectives page](https://www.redhat.com/en/services/training/red-hat-certified-openshift-administrator-exam)
 > - The OCP 4.18 product documentation at <https://docs.redhat.com/en/documentation/openshift_container_platform/4.18>.
 
-The repo is organized **by official exam objective** — one Markdown file per objective. Study the file, do the labs in your own cluster, take the weekly mock exam.
+The repo is organized **by official exam objective** - one Markdown file per objective. Study the file, do the labs in your own cluster, take the weekly mock exam.
 
 ---
 
