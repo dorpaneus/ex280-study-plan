@@ -152,5 +152,3 @@ Each day has **Theory** (read & take notes), **Labs** (hands-on in your cluster)
 - **Persistence rule:** Everything must survive a node reboot
 
 Good luck — see you on the other side of the cert. 🏅
-
-— Maintainer notes: All `oc` examples and YAMLs target **OCP 4.18 / oc client 4.18+**. If you spot drift in a future minor release, file an issue.
