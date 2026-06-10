@@ -9,9 +9,9 @@ The repo is organized **by official exam objective** - one Markdown file per obj
 
 ---
 
-## ⚠️ What changed vs. 4.14 (important if you're using older study repos)
+## ⚠️ What changed vs. 4.14
 
-When following the `anishrana2001` or `mgonzalezo` material (both 4.14), keep these 4.18 differences in mind:
+Keep these 4.18 differences in mind:
 
 | Topic | 4.14 behavior | 4.18 behavior |
 |-------|---------------|---------------|
