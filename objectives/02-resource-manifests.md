@@ -1,3 +1,10 @@
+<div align="center">
+
+[⬅️ Prev: Manage OpenShift Container Platform](../01-manage-ocp.md) &nbsp;·&nbsp; [🏠 Home](../README.md) &nbsp;·&nbsp; [Next: Deploy applications ➡️](../03-deploy-applications.md)
+
+</div>
+
+---
 # Objective 2 - Work with Resource Manifests
 
 > **Exam study points:**
@@ -394,3 +401,10 @@ In project `lab23`:
 - Working with manifests: `…/building_applications/working-with-projects`
 - ConfigMaps & Secrets: `…/nodes/pods/nodes-pods-configmaps` and `…/nodes/pods/nodes-pods-secrets`
 - Kustomize in `oc`: `…/cli_tools/openshift-cli-oc/managing-cli-plug-ins` (and the upstream <https://kustomize.io>)
+---
+
+<div align="center">
+
+[⬅️ Prev](../README.md) &nbsp;·&nbsp; [🏠 Home](../README.md) &nbsp;·&nbsp; [Next: Day 2 ➡️](./day-02-processes-proc-signals.md)
+
+</div>
