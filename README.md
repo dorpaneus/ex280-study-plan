@@ -1,9 +1,8 @@
-# EX280 - Red Hat Certified System Administrator in OpenShift ~30-Day Study Plan
+# EX280 - Red Hat Certified System Administrator in OpenShift (~30-day study plan)
 
 > **Target version: OpenShift Container Platform 4.18 (latest, released Dec 2025).**
 > This repo is a merged & sorted curriculum derived from:
 > - The [official Red Hat EX280 objectives page](https://www.redhat.com/en/services/training/red-hat-certified-openshift-administrator-exam)
-> - The DO280 v4.18 course outline (the source repos at `anishrana2001/Openshift/DO280-v4.14` and `mgonzalezo/RedHat_ex280` were authored for 4.14; concepts carry forward, but every command, API, and YAML in this plan has been written for **OCP 4.18**).
 > - The OCP 4.18 product documentation at <https://docs.redhat.com/en/documentation/openshift_container_platform/4.18>.
 
 The repo is organized **by official exam objective** — one Markdown file per objective. Study the file, do the labs in your own cluster, take the weekly mock exam.
