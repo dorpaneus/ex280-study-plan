@@ -1,4 +1,4 @@
-# Objective 3 — Deploy Applications
+# Objective 3 - Deploy Applications
 
 > **Exam study points:**
 > - Deploy applications from templates and Helm charts
@@ -8,7 +8,6 @@
 > - Configure services
 > - Expose applications to external access
 
----
 
 ## §1 — `oc new-app`: the Swiss army knife
 
