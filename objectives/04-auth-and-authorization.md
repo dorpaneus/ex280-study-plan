@@ -319,7 +319,7 @@ spec:
 
 ## 🔗 Docs to bookmark
 
-- HTPasswd: `…/authentication_and_authorization/configuring-htpasswd-identity-provider`
-- Users & groups: `…/authentication_and_authorization/understanding-authentication`
-- RBAC: `…/authentication_and_authorization/using-rbac`
-- Removing kubeadmin: `…/authentication_and_authorization/removing-kubeadmin`
+- HTPasswd: https://docs.openshift.com/container-platform/4.18/authentication_and_authorization/configuring-htpasswd-identity-provider.html
+- Users & groups: https://docs.openshift.com/container-platform/4.18/authentication_and_authorization/understanding-authentication.html
+- RBAC: https://docs.openshift.com/container-platform/4.18/authentication_and_authorization/using-rbac.html
+- Removing kubeadmin: https://docs.openshift.com/container-platform/4.18/authentication_and_authorization/removing-kubeadmin.html
