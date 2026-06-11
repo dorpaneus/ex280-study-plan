@@ -242,7 +242,7 @@ oc login -u alice -p alicepw
 oc new-project test     # → Forbidden
 ```
 
-You can also tweak the message users see when refused — set `projectRequestMessage` on `Project.config.openshift.io/cluster`:
+You can also tweak the message users see when refused - set `projectRequestMessage` on `Project.config.openshift.io/cluster`:
 
 ```yaml
 apiVersion: config.openshift.io/v1
