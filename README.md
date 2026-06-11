@@ -7,7 +7,7 @@
 |---|-----------|------|
 | 1 | Manage OpenShift Container Platform | [`01-manage-ocp.md`](objectives/01-manage-ocp.md) |
 | 2 | Work with resource manifests | [`02-resource-manifests.md`](objectives/02-resource-manifests.md) |
-| 3 | Deploy applications | [`03-deploy-applications.md`](./03-deploy-applications.md) |
+| 3 | Deploy applications | [`03-deploy-applications.md`](objectives/03-deploy-applications.md) |
 | 4 | Manage authentication and authorization | [`04-auth-and-authorization.md`](objectives/04-auth-and-authorization.md) |
 | 5 | Configure network security | [`05-network-security.md`](./05-network-security.md) |
 | 6 | Expose non-HTTP/SNI applications | [`06-expose-non-http-sni.md`](./06-expose-non-http-sni.md) |
