@@ -16,10 +16,6 @@
 | 9 | Configure application security | [`09-application-security.md`](./09-application-security.md) |
 | ★ | **Supplement: Storage (PV/PVC/SC)** - dropped from formal 4.18 objectives but still surfaces in stateful-app tasks | [`10-storage-supplement.md`](./10-storage-supplement.md) |
 
-> Red Hat rule: **all configurations must persist after reboot without intervention.** Use `oc`/YAML - never edit files on nodes by hand.
-
-> Note on storage: Red Hat removed "Provision persistent storage volumes and use storage classes" as a standalone objective when moving from EX280 v4.14 → v4.18. It now lives implicitly inside "Deploy applications" (stateful workloads) and "Work with resource manifests" (PVC YAML). The supplement chapter (`10-storage-supplement.md`) covers it so you can complete the mock-exam tasks that use PVCs (Postgres, Mongo, etc.).
-
 ---
 
 > **Target version: OpenShift Container Platform 4.18 (latest, released Dec 2025).**
@@ -30,6 +26,11 @@
 The repo is organized **by official exam objective** - one Markdown file per objective. Study the file, do the labs in your own cluster, take the weekly mock exam.
 
 ---
+
+> Red Hat rule: **all configurations must persist after reboot without intervention.** Use `oc`/YAML - never edit files on nodes by hand.
+
+> Note on storage: Red Hat removed "Provision persistent storage volumes and use storage classes" as a standalone objective when moving from EX280 v4.14 → v4.18. It now lives implicitly inside "Deploy applications" (stateful workloads) and "Work with resource manifests" (PVC YAML). The supplement chapter (`10-storage-supplement.md`) covers it so you can complete the mock-exam tasks that use PVCs (Postgres, Mongo, etc.).
+
 
 ## ⚠️ What changed vs. 4.14
 
