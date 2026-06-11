@@ -1,4 +1,4 @@
-# Objective 4 — Manage Authentication and Authorization
+# Objective 4 - Manage Authentication and Authorization
 
 > **Exam study points:**
 > - Configure the HTPasswd identity provider for authentication
@@ -9,9 +9,7 @@
 
 This is the single most common exam-task area. Be **fast** at it.
 
----
-
-## §1 — How OCP authenticates
+## §1 - How OCP authenticates
 
 OCP runs an OAuth server that wraps **Identity Providers (IdPs)**: HTPasswd, LDAP, GitHub, Keystone, OIDC, request-header. EX280 cares about **HTPasswd**.
 
@@ -30,7 +28,7 @@ OCP runs an OAuth server that wraps **Identity Providers (IdPs)**: HTPasswd, LDA
 | `OAuth/cluster` | Singleton cluster-wide OAuth config |
 | `Secret` (htpasswd) | Stores the password hash file, in `openshift-config` |
 
-## §2 — Configure HTPasswd IdP
+## §2 - Configure HTPasswd IdP
 
 ### Step-by-step
 
@@ -95,7 +93,7 @@ oc create secret generic htpasswd-secret \
 
 OAuth pods reload automatically.
 
-## §3 — Manage users (and the `kubeadmin` story)
+## §3 - Manage users (and the `kubeadmin` story)
 
 ```bash
 # Users are auto-created on first login when mappingMethod=claim. You can also create them explicitly:
@@ -121,7 +119,7 @@ oc delete secret kubeadmin -n kube-system
 
 On the exam you usually **don't** delete kubeadmin (the proctor expects it).
 
-## §4 — Groups
+## §4 - Groups
 
 ```bash
 # Create
@@ -150,7 +148,7 @@ users:
   - bob
 ```
 
-## §5 — RBAC: roles & bindings
+## §5 - RBAC: roles & bindings
 
 Two scopes:
 
@@ -173,7 +171,7 @@ A `ClusterRole` can be referenced by a `RoleBinding` to grant it only inside one
 | `self-provisioner` | Can create projects (granted to `system:authenticated:oauth` by default) |
 | `cluster-status` | Get cluster status only |
 
-### `oc adm policy` — the easy way
+### `oc adm policy` - the easy way
 
 ```bash
 # Cluster-wide
@@ -231,7 +229,7 @@ roleRef:
   name: pod-reader
 ```
 
-## §6 — Disabling self-provisioning (classic exam task)
+## §6 - Disabling self-provisioning (classic exam task)
 
 By default any authenticated user can `oc new-project`. To force admin-driven provisioning:
 
@@ -261,7 +259,7 @@ spec:
 
 ## 🧪 Labs
 
-### Lab 4.1 — Configure HTPasswd + first user (25 min)
+### Lab 4.1 - Configure HTPasswd + first user (25 min)
 
 1. Create users `alice` & `bob` in a local `users.htpasswd` (bcrypt, `-B`).
 2. Create Secret `htpasswd-secret` in `openshift-config`.
@@ -269,7 +267,7 @@ spec:
 4. Wait for `clusteroperator/authentication` to be `Available=True`.
 5. `oc login -u alice -p alicepw` from a separate terminal/profile.
 
-### Lab 4.2 — Promote, demote, change password (15 min)
+### Lab 4.2 - Promote, demote, change password (15 min)
 
 1. Make `alice` a `cluster-admin`.
 2. Log in as alice and create project `team-alpha`.
@@ -277,7 +275,7 @@ spec:
 4. Verify she can no longer create projects cluster-wide.
 5. Change alice's password (extract → htpasswd → replace). Confirm new password works.
 
-### Lab 4.3 — Groups + project-scoped roles (25 min)
+### Lab 4.3 - Groups + project-scoped roles (25 min)
 
 1. Create groups `devs` (alice, bob) and `viewers` (carol).
 2. In project `team-alpha`: `devs` get `edit`, `viewers` get `view`.
@@ -285,7 +283,7 @@ spec:
 4. As carol: try to create a Deployment. ❌
 5. Verify with `oc auth can-i --as=bob` and `--as=carol`.
 
-### Lab 4.4 — Self-provisioning lockdown (15 min)
+### Lab 4.4 - Self-provisioning lockdown (15 min)
 
 1. Remove `self-provisioner` from `system:authenticated:oauth`.
 2. As alice, try `oc new-project nope` → expect Forbidden.
@@ -310,12 +308,12 @@ spec:
 
 ## ❗ Common exam mistakes
 
-1. **Using MD5 / plaintext in htpasswd** — always use `-B` (bcrypt).
+1. **Using MD5 / plaintext in htpasswd** - always use `-B` (bcrypt).
 2. **Forgetting `-c`** on the first user creates the file; **using `-c`** on later users wipes the file!
-3. **Wrong namespace for the Secret** — it MUST be `openshift-config`.
-4. **Forgetting that OAuth pods take ~30 s to reload** — wait for `clusteroperator/authentication` to settle before testing.
+3. **Wrong namespace for the Secret** - it MUST be `openshift-config`.
+4. **Forgetting that OAuth pods take ~30 s to reload** - wait for `clusteroperator/authentication` to settle before testing.
 5. **Removing self-provisioner but not restoring** when a test scenario expects developers to create their own projects.
-6. **Confusing `User` deletion with `Identity` deletion** — both should be cleaned up to fully remove a user.
+6. **Confusing `User` deletion with `Identity` deletion** - both should be cleaned up to fully remove a user.
 
 ---
 
