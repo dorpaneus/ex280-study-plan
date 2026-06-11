@@ -9,7 +9,7 @@
 > - Expose applications to external access
 
 
-## §1 — `oc new-app`: the Swiss army knife
+## §1 - `oc new-app`: the Swiss army knife
 
 `oc new-app` is OpenShift's one-liner for deploying. In **4.18 it creates a `Deployment`** (not a deprecated `DeploymentConfig`) by default.
 
@@ -44,7 +44,7 @@ oc get all -l app=hello              # everything new-app labels with the same s
 oc delete all -l app=hello           # tear it all down
 ```
 
-## §2 — Templates
+## §2 - Templates
 
 A `Template` is a parameterized bundle of resources that lives in the cluster (often in the `openshift` namespace).
 
@@ -110,7 +110,7 @@ objects:
 
 Save the template into the cluster: `oc apply -f hello-template.yaml -n myapp`, then `oc process` / `oc new-app --template=hello-template`.
 
-## §3 — Helm charts
+## §3 - Helm charts
 
 Helm 3 ships natively. No Tiller.
 
@@ -154,7 +154,7 @@ spec:
 
 Apply and the repo appears in the web console **Developer → +Add → Helm Chart**.
 
-## §4 — Deployments, ReplicaSets, labels & selectors
+## §4 - Deployments, ReplicaSets, labels & selectors
 
 A `Deployment` manages a `ReplicaSet`, which manages `Pods`. **Selectors are mandatory** and must match the pod template's labels.
 
@@ -210,7 +210,7 @@ oc rollout resume deployment/hello
 oc rollout restart deployment/hello                   # forces new ReplicaSet, useful after Secret/CM change
 ```
 
-## §5 — Services
+## §5 - Services
 
 A `Service` is a stable virtual IP + DNS name in front of pods matching a selector.
 
@@ -254,7 +254,7 @@ oc describe svc hello
 
 > ❗ **Endpoints empty?** Always means the Service `selector` doesn't match any pod labels. Fix the labels, not the Service.
 
-## §6 — Exposing apps externally with Routes
+## §6 - Exposing apps externally with Routes
 
 Routes are OpenShift's ingress for HTTP/HTTPS. Powered by HAProxy in the `openshift-ingress` namespace.
 
@@ -279,7 +279,7 @@ spec:
     targetPort: 8080
 ```
 
-### TLS-terminated routes — see Objective 5 in detail
+### TLS-terminated routes - see Objective 5 in detail
 
 ```bash
 # Edge: TLS terminated at the router; cleartext to pod
@@ -307,7 +307,7 @@ curl -sk https://$(oc get route hello -o jsonpath='{.spec.host}')
 
 ## 🧪 Labs
 
-### Lab 3.1 — Five flavors of new-app (25 min)
+### Lab 3.1 - Five flavors of new-app (25 min)
 
 In project `lab31`, run `oc new-app` five times with five different sources:
 
@@ -319,14 +319,14 @@ In project `lab31`, run `oc new-app` five times with five different sources:
 
 For each, run `oc status` and `oc get all -l app=<name>`.
 
-### Lab 3.2 — Author and use a Template (25 min)
+### Lab 3.2 - Author and use a Template (25 min)
 
 1. Save the `hello-template` from §2 as a YAML.
 2. `oc apply -f hello-template.yaml -n openshift` (note: needs cluster-admin).
 3. From a regular user in project `lab32`, `oc new-app --template=hello-template -p APP_NAME=greeter -p REPLICAS=3`.
 4. Verify the resulting Deployment + Service.
 
-### Lab 3.3 — Service & Route end-to-end (20 min)
+### Lab 3.3 - Service & Route end-to-end (20 min)
 
 1. Deploy `quay.io/openshifttest/hello-openshift:1.2.0` (3 replicas).
 2. Expose port 8080 as a `ClusterIP` Service named `hello`.
@@ -334,7 +334,7 @@ For each, run `oc status` and `oc get all -l app=<name>`.
 4. Create an HTTP Route and `curl` it from your workstation.
 5. **Break** the selector mismatch by changing the deployment's labels; observe `oc get endpoints` empty; fix.
 
-### Lab 3.4 — Helm install + values (25 min)
+### Lab 3.4 - Helm install + values (25 min)
 
 1. Add the bitnami repo.
 2. Install `bitnami/nginx` as release `web` in project `lab34` with `service.type=ClusterIP` and 2 replicas (`--set replicaCount=2`).
@@ -359,10 +359,10 @@ For each, run `oc status` and `oc get all -l app=<name>`.
 
 ## ❗ Common pitfalls
 
-1. **`DeploymentConfig` vs `Deployment`** — older repos/docs use DC; in 4.18 use Deployment. Both work but `oc rollout` for DC has slightly different commands (`oc rollout latest dc/<name>` etc.).
+1. **`DeploymentConfig` vs `Deployment`** - older repos/docs use DC; in 4.18 use Deployment. Both work but `oc rollout` for DC has slightly different commands (`oc rollout latest dc/<name>` etc.).
 2. **`oc expose svc/<x>` creates a route**, but `oc expose deployment/<x>` creates a Service. Be explicit.
-3. **Template numeric params** need the `${{PARAM}}` syntax (double-brace) to come through as int/bool — `${PARAM}` always stringifies.
-4. **Helm releases are per-namespace**, but CRDs installed by a chart are cluster-scoped — uninstalling the release may leave them around.
+3. **Template numeric params** need the `${{PARAM}}` syntax (double-brace) to come through as int/bool - `${PARAM}` always stringifies.
+4. **Helm releases are per-namespace**, but CRDs installed by a chart are cluster-scoped - uninstalling the release may leave them around.
 
 ---
 
