@@ -1,5 +1,27 @@
 # EX280 - Red Hat Certified System Administrator in OpenShift (~30-day study plan)
 
+
+## 🎯 The 9 official EX280 objectives (current, OCP 4.18)
+
+| # | Objective | File |
+|---|-----------|------|
+| 1 | Manage OpenShift Container Platform | [`01-manage-ocp.md`](objectives/01-manage-ocp.md) |
+| 2 | Work with resource manifests | [`02-resource-manifests.md`](objectives/02-resource-manifests.md) |
+| 3 | Deploy applications | [`03-deploy-applications.md`](./03-deploy-applications.md) |
+| 4 | Manage authentication and authorization | [`04-auth-and-authorization.md`](./04-auth-and-authorization.md) |
+| 5 | Configure network security | [`05-network-security.md`](./05-network-security.md) |
+| 6 | Expose non-HTTP/SNI applications | [`06-expose-non-http-sni.md`](./06-expose-non-http-sni.md) |
+| 7 | Enable developer self-service | [`07-developer-self-service.md`](./07-developer-self-service.md) |
+| 8 | Manage OpenShift operators | [`08-openshift-operators.md`](./08-openshift-operators.md) |
+| 9 | Configure application security | [`09-application-security.md`](./09-application-security.md) |
+| ★ | **Supplement: Storage (PV/PVC/SC)** - dropped from formal 4.18 objectives but still surfaces in stateful-app tasks | [`10-storage-supplement.md`](./10-storage-supplement.md) |
+
+> Red Hat rule: **all configurations must persist after reboot without intervention.** Use `oc`/YAML - never edit files on nodes by hand.
+
+> Note on storage: Red Hat removed "Provision persistent storage volumes and use storage classes" as a standalone objective when moving from EX280 v4.14 → v4.18. It now lives implicitly inside "Deploy applications" (stateful workloads) and "Work with resource manifests" (PVC YAML). The supplement chapter (`10-storage-supplement.md`) covers it so you can complete the mock-exam tasks that use PVCs (Postgres, Mongo, etc.).
+
+---
+
 > **Target version: OpenShift Container Platform 4.18 (latest, released Dec 2025).**
 > This repo is a merged & sorted curriculum derived from:
 > - The [official Red Hat EX280 objectives page](https://www.redhat.com/en/services/training/red-hat-certified-openshift-administrator-exam)
@@ -52,29 +74,6 @@ ex280-study-plan/
     ├── week4-mock.md                  ← 120 min, all objectives
     └── final-exam-3h.md               ← Full 3-hour exam simulation
 ```
-
----
-
-## 🎯 The 9 official EX280 objectives (current, OCP 4.18)
-
-| # | Objective | File |
-|---|-----------|------|
-| 1 | Manage OpenShift Container Platform | [`01-manage-ocp.md`](objectives/01-manage-ocp.md) |
-| 2 | Work with resource manifests | [`02-resource-manifests.md`](objectives/02-resource-manifests.md) |
-| 3 | Deploy applications | [`03-deploy-applications.md`](./03-deploy-applications.md) |
-| 4 | Manage authentication and authorization | [`04-auth-and-authorization.md`](./04-auth-and-authorization.md) |
-| 5 | Configure network security | [`05-network-security.md`](./05-network-security.md) |
-| 6 | Expose non-HTTP/SNI applications | [`06-expose-non-http-sni.md`](./06-expose-non-http-sni.md) |
-| 7 | Enable developer self-service | [`07-developer-self-service.md`](./07-developer-self-service.md) |
-| 8 | Manage OpenShift operators | [`08-openshift-operators.md`](./08-openshift-operators.md) |
-| 9 | Configure application security | [`09-application-security.md`](./09-application-security.md) |
-| ★ | **Supplement: Storage (PV/PVC/SC)** - dropped from formal 4.18 objectives but still surfaces in stateful-app tasks | [`10-storage-supplement.md`](./10-storage-supplement.md) |
-
-> Red Hat rule: **all configurations must persist after reboot without intervention.** Use `oc`/YAML - never edit files on nodes by hand.
-
-> Note on storage: Red Hat removed "Provision persistent storage volumes and use storage classes" as a standalone objective when moving from EX280 v4.14 → v4.18. It now lives implicitly inside "Deploy applications" (stateful workloads) and "Work with resource manifests" (PVC YAML). The supplement chapter (`10-storage-supplement.md`) covers it so you can complete the mock-exam tasks that use PVCs (Postgres, Mongo, etc.).
-
----
 
 ## 📅 30-Day Plan (3–5 h/day ≈ 90–150 h total)
 
