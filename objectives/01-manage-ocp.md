@@ -19,7 +19,7 @@ Plus, in 4.18: **be comfortable with cluster updates** (channel selection, EUS-t
 
 ---
 
-## §1 — `oc` and the web console
+## §1 - `oc` and the web console
 
 Both are first-class tools. You'll be faster with `oc` on the exam, but the web console is unbeatable for browsing operators, events, and YAML.
 
@@ -55,7 +55,7 @@ crc console --credentials
 oc get route -n openshift-console console -o jsonpath='{.spec.host}'
 ```
 
-## §2 — Projects (namespaces with extra annotations)
+## §2 - Projects (namespaces with extra annotations)
 
 A **Project** is a Kubernetes `Namespace` plus OpenShift annotations (display name, description, requester). Always use `oc new-project` / `oc delete project` so the annotations come along.
 
@@ -78,9 +78,9 @@ oc delete project myapp
 oc wait --for=delete project/myapp --timeout=60s
 ```
 
-> ⚠️ On the exam, **read the prompt for the exact project name** — case-sensitive, hyphens matter. Use `oc project <name>` immediately so all subsequent commands land in the right place.
+> ⚠️ On the exam, **read the prompt for the exact project name** - case-sensitive, hyphens matter. Use `oc project <name>` immediately so all subsequent commands land in the right place.
 
-## §3 — Container images: tags & digests
+## §3 - Container images: tags & digests
 
 OpenShift pulls images by **tag** (`:1.2.0`, `:latest`) or **digest** (`@sha256:abc…`). Digests are immutable; tags can move.
 
@@ -119,7 +119,7 @@ spec:
 
 Apply with `oc apply -f imagestream.yaml`.
 
-## §4 — Querying resources: format & filter
+## §4 - Querying resources: format & filter
 
 This is exam gold. Master these.
 
@@ -170,7 +170,7 @@ oc get pods --sort-by=.status.startTime
 oc get events --sort-by=.lastTimestamp
 ```
 
-## §5 — Importing, exporting, editing resources
+## §5 - Importing, exporting, editing resources
 
 ```bash
 # Export an existing resource as YAML (no cluster-side fields)
@@ -200,7 +200,7 @@ oc create configmap mycfg --from-literal=key=value --dry-run=client -o yaml
 oc create secret generic mysec --from-literal=password=hunter2 --dry-run=client -o yaml
 ```
 
-## §6 — Cluster & resource status
+## §6 - Cluster & resource status
 
 ```bash
 # Are all platform operators healthy?
@@ -223,7 +223,7 @@ oc adm top nodes
 oc adm top pods -A
 ```
 
-## §7 — Events, logs, troubleshooting
+## §7 - Events, logs, troubleshooting
 
 ```bash
 # Events for a namespace (most recent last)
@@ -270,7 +270,7 @@ Route 503 / 404            → oc get route → wrong service / wrong port / TLS
 RBAC error                 → oc auth can-i <verb> <resource> -n <ns> --as=<user>
 ```
 
-## §8 — Monitoring & alerts
+## §8 - Monitoring & alerts
 
 OCP 4.18 ships an integrated monitoring stack (Prometheus + Alertmanager + Thanos). You don't manage it deeply on EX280, but you should be able to **find** alerts.
 
@@ -300,7 +300,7 @@ data:
     enableUserWorkload: true
 ```
 
-## §9 — OpenShift cluster updates (new emphasis in 4.18 / DO280 v4.18)
+## §9 - OpenShift cluster updates (new emphasis in 4.18 / DO280 v4.18)
 
 ```bash
 # Available updates on the current channel
