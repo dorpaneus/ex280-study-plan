@@ -335,6 +335,134 @@ oc patch machineconfigpool worker --type=merge -p '{"spec":{"paused":false}}'
 3. Switch to it and create a pod from `quay.io/openshifttest/hello-openshift:1.2.0`.
 4. Delete the project; wait for `Terminating` to finish.
 
+Lab 1.1 — Project lifecycle (10 min)
+
+This lab walks through the four moments in a project's life: create, inspect, populate, delete. Each step has a collapsible Solution.
+
+Prerequisites:
+
+
+Logged in as cluster-admin (or any user with self-provisioner).
+oc CLI version close to 4.18.
+
+
+
+Step 1 — Create a project named lab11
+
+<details>
+<summary>💡 Solution</summary>
+bashoc new-project lab11
+# Now using project "lab11" on server "https://api.<cluster>:6443".
+
+oc new-project is the user-facing command — it creates the project AND switches your context to it.
+
+Alternative (cluster-admin only):
+
+bashoc create namespace lab11
+oc project lab11
+
+The two are not equivalent in OpenShift:
+
+
+oc new-project goes through the project request API, applies the project template (if one is configured), and sets openshift.io/requester to your username.
+oc create namespace bypasses that — no requester annotation, no template processing.
+
+
+</details>
+
+Step 2 — Show the project's annotations and find openshift.io/requester
+
+<details>
+<summary>💡 Solution</summary>
+bashoc get project lab11 -o yaml
+
+Look in the metadata.annotations block. Key entries to recognize:
+
+yamlmetadata:
+  annotations:
+    openshift.io/description: ""
+    openshift.io/display-name: ""
+    openshift.io/requester: kubeadmin        # ← who asked for this project
+    openshift.io/sa.scc.mcs: s0:c26,c10      # SCC MCS labels
+    openshift.io/sa.scc.supplemental-groups: 1000680000/10000
+    openshift.io/sa.scc.uid-range: 1000680000/10000
+
+Direct extract via jsonpath:
+
+bashoc get project lab11 -o jsonpath='{.metadata.annotations.openshift\.io/requester}{"\n"}'
+# kubeadmin
+
+(Note the \. to escape the dot inside the annotation key.)
+
+Why this matters: openshift.io/requester drives the annotationSelector mode of ClusterResourceQuota — you can build "per-developer quota" rules that auto-attach to every project a given user creates.
+
+</details>
+
+Step 3 — Switch into lab11 and run a pod from hello-openshift
+
+<details>
+<summary>💡 Solution</summary>
+You're already inside lab11 after Step 1. If not:
+
+bashoc project lab11
+
+Create the pod (simplest form):
+
+bashoc run hello --image=quay.io/openshifttest/hello-openshift:1.2.0
+# pod/hello created
+
+Verify:
+
+bashoc get pod hello -w
+# hello   0/1   ContainerCreating   0   3s
+# hello   1/1   Running             0   12s
+
+oc logs hello
+# serving on 8080
+# serving on 8888
+
+Gotcha — oc run creates a bare Pod, not a Deployment. A bare Pod isn't restarted by a controller if the node fails. On the exam, prefer:
+
+bashoc create deployment hello --image=quay.io/openshifttest/hello-openshift:1.2.0
+
+unless the task explicitly asks for a Pod.
+
+</details>
+
+Step 4 — Delete the project and wait for Terminating to finish
+
+<details>
+<summary>💡 Solution</summary>
+bashoc delete project lab11
+# project.project.openshift.io "lab11" deleted
+
+# Watch the status until the project disappears entirely:
+oc get project lab11 -w
+# NAME    DISPLAY NAME   STATUS
+# lab11                  Terminating
+# (... typically 5–20 seconds ...)
+# Error from server (NotFound): namespaces "lab11" not found
+
+Alternative — block until deleted (cleaner in scripts):
+
+bashoc delete project lab11 --wait=true
+
+If the project hangs in Terminating forever: there's a stuck finalizer, usually on a custom resource managed by an operator that's no longer running. To diagnose:
+
+bashoc get project lab11 -o json | jq '.spec.finalizers, .metadata.finalizers'
+oc get all,pvc,configmap,secret,role,rolebinding -n lab11
+
+Force-removal (use carefully — last resort):
+
+bashoc get project lab11 -o json \
+  | jq '.spec.finalizers = [] | .metadata.finalizers = []' \
+  | oc replace --raw "/api/v1/namespaces/lab11/finalize" -f -
+
+On the exam, projects normally terminate in seconds. If yours doesn't, suspect a misconfigured operator.
+
+</details>
+   
+---
 ### Lab 1.2 — Querying & filtering (15 min)
 
 In `openshift-monitoring`:
