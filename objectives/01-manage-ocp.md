@@ -342,10 +342,8 @@ oc CLI version close to 4.18.
 3. Switch to it and create a pod from `quay.io/openshifttest/hello-openshift:1.2.0`.
 4. Delete the project; wait for `Terminating` to finish.
 
-Step 1 — Create a project named lab11
-
 <details>
-<summary>💡 Solution</summary>
+<summary>💡 Solution Step 1</summary>
 bashoc new-project lab11
 # Now using project "lab11" on server "https://api.<cluster>:6443".
 
