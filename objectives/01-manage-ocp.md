@@ -363,10 +363,8 @@ oc create namespace bypasses that — no requester annotation, no template proce
 
 </details>
 
-Step 2 — Show the project's annotations and find openshift.io/requester
-
 <details>
-<summary>💡 Solution</summary>
+<summary>💡 Solution Step 2 </summary>
 bashoc get project lab11 -o yaml
 
 Look in the metadata.annotations block. Key entries to recognize:
@@ -391,10 +389,8 @@ Why this matters: openshift.io/requester drives the annotationSelector mode of C
 
 </details>
 
-Step 3 — Switch into lab11 and run a pod from hello-openshift
-
 <details>
-<summary>💡 Solution</summary>
+<summary>💡 Solution Step 3 </summary>
 You're already inside lab11 after Step 1. If not:
 
 bashoc project lab11
@@ -422,10 +418,8 @@ unless the task explicitly asks for a Pod.
 
 </details>
 
-Step 4 — Delete the project and wait for Terminating to finish
-
 <details>
-<summary>💡 Solution</summary>
+<summary>💡 Solution Step 4 </summary>
 bashoc delete project lab11
 # project.project.openshift.io "lab11" deleted
 
@@ -456,7 +450,7 @@ On the exam, projects normally terminate in seconds. If yours doesn't, suspect a
 </details>
    
 ---
-### Lab 1.2 — Querying & filtering (15 min)
+### Lab 1.2 - Querying & filtering (15 min)
 
 In `openshift-monitoring`:
 
