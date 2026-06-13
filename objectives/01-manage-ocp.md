@@ -17,8 +17,6 @@
 
 Plus, in 4.18: **be comfortable with cluster updates** (channel selection, EUS-to-EUS, MCP pausing).
 
----
-
 ## §1 - `oc` and the web console
 
 Both are first-class tools. You'll be faster with `oc` on the exam, but the web console is unbeatable for browsing operators, events, and YAML.
