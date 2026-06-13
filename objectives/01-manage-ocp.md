@@ -460,9 +460,6 @@ In `openshift-monitoring`:
 3. List only pods with label `app.kubernetes.io/component=prometheus`.
 4. Get the image of the first container of each prometheus pod (jsonpath).
 
-
- — List all pods sorted by start time
-
 <details>
 <summary>💡Solution Step 1 </summary>
 bashoc get pods -n openshift-monitoring --sort-by=.status.startTime
@@ -481,10 +478,8 @@ Gotcha — --sort-by requires a single JSONPath expression, not the templated {.
 
 </details>
 
-Step 2 — Show only pod names and node names (custom columns)
-
 <details>
-<summary>💡 Solution</summary>
+<summary>💡 Solution Step 2 </summary>
 bashoc get pods -n openshift-monitoring \
   -o custom-columns=NAME:.metadata.name,NODE:.spec.nodeName
 
@@ -517,10 +512,8 @@ bashoc get pods -n openshift-monitoring \
 
 </details>
 
-Step 3 — List only pods with label app.kubernetes.io/component=prometheus
-
 <details>
-<summary>💡 Solution</summary>
+<summary>💡 Solution Step 3 </summary>
 bashoc get pods -n openshift-monitoring -l app.kubernetes.io/component=prometheus
 
 Output (typical):
@@ -555,10 +548,8 @@ oc get pods -A --field-selector=spec.nodeName=worker-0
 
 </details>
 
-Step 4 — Get the image of the first container of each prometheus pod (jsonpath)
-
 <details>
-<summary>💡 Solution</summary>
+<summary>💡 Solution Step 4 </summary>
 bashoc get pods -n openshift-monitoring \
   -l app.kubernetes.io/component=prometheus \
   -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.spec.containers[0].image}{"\n"}{end}'
