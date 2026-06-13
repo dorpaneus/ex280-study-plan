@@ -332,10 +332,7 @@ oc patch machineconfigpool worker --type=merge -p '{"spec":{"paused":false}}'
 
 This lab walks through the four moments in a project's life: create, inspect, populate, delete. Each step has a collapsible Solution.
 
-Prerequisites:
-
-Logged in as cluster-admin (or any user with self-provisioner).
-oc CLI version close to 4.18.
+Prerequisites: logged in as cluster-admin (or any user with self-provisioner). `oc` CLI version close to 4.18.
 
 1. Create a project `lab11`.
 2. Show its annotations: `oc get project lab11 -o yaml` — note `openshift.io/requester`.
@@ -452,6 +449,10 @@ On the exam, projects normally terminate in seconds. If yours doesn't, suspect a
 ---
 ### Lab 1.2 - Querying & filtering (15 min)
 
+All four steps target the openshift-monitoring namespace (which always has a healthy set of pods on a real cluster). This lab is muscle memory for the exam — you'll do oc get -o jsonpath and custom-columns repeatedly.
+
+Prerequisites: read access to openshift-monitoring (cluster-admin or cluster-reader works).
+
 In `openshift-monitoring`:
 
 1. List all pods sorted by start time.
@@ -459,21 +460,11 @@ In `openshift-monitoring`:
 3. List only pods with label `app.kubernetes.io/component=prometheus`.
 4. Get the image of the first container of each prometheus pod (jsonpath).
 
-Lab 1.2 — Querying & filtering (15 min)
 
-All four steps target the openshift-monitoring namespace (which always has a healthy set of pods on a real cluster). This lab is muscle memory for the exam — you'll do oc get -o jsonpath and custom-columns repeatedly.
-
-Prerequisites:
-
-
-Read access to openshift-monitoring (cluster-admin or cluster-reader works).
-
-
-
-Step 1 — List all pods sorted by start time
+ — List all pods sorted by start time
 
 <details>
-<summary>💡 Solution</summary>
+<summary>💡Solution Step 1 </summary>
 bashoc get pods -n openshift-monitoring --sort-by=.status.startTime
 
 Newest pods are at the bottom. To reverse:
