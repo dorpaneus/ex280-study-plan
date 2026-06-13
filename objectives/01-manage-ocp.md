@@ -745,28 +745,19 @@ oc delete project lab13
 ----
 ### Lab 1.4 - Break & fix (25 min)
 
-In a fresh project:
-
-1. Deploy `oc new-app --image=nginx:does-not-exist`.
-2. Use `oc describe` / `oc get events` to identify the cause.
-3. Fix by patching the image to `nginx:1.27`.
-4. Now break it again by setting `replicas=2` and an impossible `resources.requests.cpu: "1000"`. Diagnose with events. Fix.
-
-Lab 1.4 — Break & fix (25 min)
-
 Troubleshooting is half the exam. This lab walks through two of the most common pod-failure modes and the exact diagnostic commands to use.
 
-Prerequisites:
+Prerequisites: fresh project: oc new-project lab14.
 
+In a fresh project:
 
-Fresh project: oc new-project lab14.
-
-
-
-Step 1 — Deploy a deliberately broken app with oc new-app --image=nginx:does-not-exist
+1. Deploy a deliberately broken app with oc new-app --image=nginx:does-not-exist. Deploy `oc new-app --image=nginx:does-not-exist`.
+2. Identify the cause with oc describe / oc get events. Use `oc describe` / `oc get events` to identify the cause.
+3. Fix by patching the image to `nginx:1.27`.
+4. Break it again with an impossible CPU request; Diagnose with events. Fix. Scale to 2, set resources.requests.cpu: "1000" (1000 whole cores — no node can satisfy this).Now break it again by setting `replicas=2` and an impossible `resources.requests.cpu: "1000"`.
 
 <details>
-<summary>💡 Solution</summary>
+<summary>💡 Solution Step 1 </summary>
 bashoc new-app --image=nginx:does-not-exist
 # --> Found container image ... (or warning that the image couldn't be inspected)
 # --> Creating resources ...
@@ -786,10 +777,8 @@ ImagePullBackOff means the kubelet keeps retrying but the image registry rejects
 
 </details>
 
-Step 2 — Identify the cause with oc describe / oc get events
-
 <details>
-<summary>💡 Solution</summary>
+<summary>💡 Solution Step 2 </summary>
 Method A — oc describe pod:
 
 bashoc describe pod -l deployment=nginx | tail -20
@@ -832,10 +821,8 @@ oc get events --sort-by=.lastTimestamp — wider context, catches cross-resource
 
 </details>
 
-Step 3 — Fix by patching the image to nginx:1.27
-
 <details>
-<summary>💡 Solution</summary>
+<summary>💡 Solution Step 3 </summary>
 Method A — oc set image (purpose-built for this):
 
 bashoc set image deployment/nginx nginx=nginx:1.27
@@ -876,12 +863,8 @@ Both bitnami and Red Hat's UBI nginx images run as non-root.
 
 </details>
 
-Step 4 — Break it again with an impossible CPU request; diagnose; fix
-
-Scale to 2, set resources.requests.cpu: "1000" (1000 whole cores — no node can satisfy this).
-
 <details>
-<summary>💡 Solution</summary>
+<summary>💡 Solution Step 4 </summary>
 Break:
 
 bashoc scale deployment nginx --replicas=2
@@ -909,7 +892,7 @@ Events:
 
 Key phrase: Insufficient cpu. The scheduler ran the resource math and concluded no node can host this pod.
 
-Fix — set a realistic CPU request:
+Fix - set a realistic CPU request:
 
 bashoc set resources deployment/nginx --requests=cpu=100m
 # deployment.apps/nginx resource requirements updated
