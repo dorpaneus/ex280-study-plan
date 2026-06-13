@@ -328,24 +328,19 @@ oc patch machineconfigpool worker --type=merge -p '{"spec":{"paused":false}}'
 
 ## 🧪 Labs
 
-### Lab 1.1 — Project lifecycle (10 min)
-
-1. Create a project `lab11`.
-2. Show its annotations: `oc get project lab11 -o yaml` — note `openshift.io/requester`.
-3. Switch to it and create a pod from `quay.io/openshifttest/hello-openshift:1.2.0`.
-4. Delete the project; wait for `Terminating` to finish.
-
-Lab 1.1 — Project lifecycle (10 min)
+### Lab 1.1 - Project lifecycle (10 min)
 
 This lab walks through the four moments in a project's life: create, inspect, populate, delete. Each step has a collapsible Solution.
 
 Prerequisites:
 
-
 Logged in as cluster-admin (or any user with self-provisioner).
 oc CLI version close to 4.18.
 
-
+1. Create a project `lab11`.
+2. Show its annotations: `oc get project lab11 -o yaml` — note `openshift.io/requester`.
+3. Switch to it and create a pod from `quay.io/openshifttest/hello-openshift:1.2.0`.
+4. Delete the project; wait for `Terminating` to finish.
 
 Step 1 — Create a project named lab11
 
