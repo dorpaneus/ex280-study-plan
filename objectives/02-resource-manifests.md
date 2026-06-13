@@ -4,7 +4,6 @@
 
 </div>
 
----
 # Objective 2 - Work with Resource Manifests
 
 > **Exam study points:**
@@ -17,9 +16,7 @@
 
 `oc` is built on `kubectl`, so everything Kubernetes-native works here. The big OCP-specific things in this objective are Routes, ImageStreams, and the integrated Kustomize support (`oc apply -k`).
 
----
-
-## §1 — Anatomy of an OpenShift YAML
+## §1 - Anatomy of an OpenShift YAML
 
 ```yaml
 apiVersion: apps/v1           # group/version
