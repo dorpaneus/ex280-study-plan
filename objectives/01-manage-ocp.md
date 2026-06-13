@@ -582,29 +582,17 @@ Gotcha — go-template vs jsonpath: OpenShift docs and oc explain examples somet
 
 ---
 ### Lab 1.3 - Imperative → declarative (15 min)
-
-1. `oc create deployment web --image=quay.io/openshifttest/hello-openshift:1.2.0 --replicas=2 --dry-run=client -o yaml > web.yaml`
-2. Add a `resources` block (requests/limits).
-3. `oc apply -f web.yaml`.
-4. Patch `replicas` to 4 in two ways: `oc patch` and `oc edit`.
-
-Lab 1.3 — Imperative → declarative (15 min)
-
 The "generate YAML, then edit and apply" pattern is the single most useful exam habit. This lab drills it.
 
-Prerequisites:
+Prerequisites: a working project. Create one if needed: oc new-project lab13.
 
-
-A working project. Create one if needed: oc new-project lab13.
-
-
-
-Step 1 — Generate a Deployment YAML with --dry-run=client -o yaml
-
-Goal: produce a web.yaml file from an imperative command, without actually creating anything on the cluster.
+1. Goal: produce a web.yaml file from an imperative command, without actually creating anything on the cluster. `oc create deployment web --image=quay.io/openshifttest/hello-openshift:1.2.0 --replicas=2 --dry-run=client -o yaml > web.yaml`
+2. Add a `resources` block (requests/limits).
+3. Patch replicas to 4 using two different methods. Apply web.yaml. `oc apply -f web.yaml`.
+4. Patch `replicas` to 4 in two ways: `oc patch` and `oc edit`.
 
 <details>
-<summary>💡 Solution</summary>
+<summary>💡 Solution Step 1 </summary>
 bashoc create deployment web \
   --image=quay.io/openshifttest/hello-openshift:1.2.0 \
   --replicas=2 \
@@ -658,10 +646,8 @@ Memorize the pattern; you'll use it constantly.
 
 </details>
 
-Step 2 — Add a resources block (requests/limits) to web.yaml
-
 <details>
-<summary>💡 Solution</summary>
+<summary>💡 Solution Step 2 </summary>
 Edit web.yaml and replace resources: {} with:
 
 yaml        resources:
@@ -693,10 +679,8 @@ oc apply -f web.yaml --dry-run=server --validate=true
 
 </details>
 
-Step 3 — Apply web.yaml
-
 <details>
-<summary>💡 Solution</summary>
+<summary>💡 Solution Step 3 </summary>
 bashoc apply -f web.yaml
 # deployment.apps/web created
 
@@ -716,10 +700,8 @@ Prefer oc apply on the exam unless the task specifically calls for create or rep
 
 </details>
 
-Step 4 — Patch replicas to 4 using two different methods
-
 <details>
-<summary>💡 Solution</summary>
+<summary>💡 Solution Step 4 </summary>
 Method A — oc patch (declarative, scriptable):
 
 bashoc patch deployment web --type=merge -p '{"spec":{"replicas":4}}'
