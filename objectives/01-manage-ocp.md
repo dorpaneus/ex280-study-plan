@@ -754,7 +754,7 @@ In a fresh project:
 1. Deploy a deliberately broken app with oc new-app --image=nginx:does-not-exist. Deploy `oc new-app --image=nginx:does-not-exist`.
 2. Identify the cause with oc describe / oc get events. Use `oc describe` / `oc get events` to identify the cause.
 3. Fix by patching the image to `nginx:1.27`.
-4. Break it again with an impossible CPU request; Diagnose with events. Fix. Scale to 2, set resources.requests.cpu: "1000" (1000 whole cores — no node can satisfy this).Now break it again by setting `replicas=2` and an impossible `resources.requests.cpu: "1000"`.
+4. Break it again with an impossible CPU request; Diagnose with events. Fix. Scale to 2, set resources.requests.cpu: "1000" (1000 whole cores - no node can satisfy this).Now break it again by setting `replicas=2` and an impossible `resources.requests.cpu: "1000"`.
 
 <details>
 <summary>💡 Solution Step 1 </summary>
