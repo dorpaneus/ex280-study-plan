@@ -459,6 +459,148 @@ In `openshift-monitoring`:
 3. List only pods with label `app.kubernetes.io/component=prometheus`.
 4. Get the image of the first container of each prometheus pod (jsonpath).
 
+Lab 1.2 — Querying & filtering (15 min)
+
+All four steps target the openshift-monitoring namespace (which always has a healthy set of pods on a real cluster). This lab is muscle memory for the exam — you'll do oc get -o jsonpath and custom-columns repeatedly.
+
+Prerequisites:
+
+
+Read access to openshift-monitoring (cluster-admin or cluster-reader works).
+
+
+
+Step 1 — List all pods sorted by start time
+
+<details>
+<summary>💡 Solution</summary>
+bashoc get pods -n openshift-monitoring --sort-by=.status.startTime
+
+Newest pods are at the bottom. To reverse:
+
+bashoc get pods -n openshift-monitoring --sort-by=.status.startTime | tac
+
+Alternative sort keys you'll want to know:
+
+bashoc get pods -n openshift-monitoring --sort-by=.metadata.creationTimestamp
+oc get pods -n openshift-monitoring --sort-by=.status.phase
+oc get pods -A --sort-by='.status.containerStatuses[0].restartCount'    # restart troublemakers
+
+Gotcha — --sort-by requires a single JSONPath expression, not the templated {...} form. Don't write --sort-by='{.status.startTime}'.
+
+</details>
+
+Step 2 — Show only pod names and node names (custom columns)
+
+<details>
+<summary>💡 Solution</summary>
+bashoc get pods -n openshift-monitoring \
+  -o custom-columns=NAME:.metadata.name,NODE:.spec.nodeName
+
+Output:
+
+NAME                                          NODE
+alertmanager-main-0                           worker-0
+prometheus-k8s-0                              worker-1
+prometheus-k8s-1                              worker-2
+...
+
+Variants worth knowing:
+
+bash# Skip the header (useful in scripts):
+oc get pods -n openshift-monitoring \
+  -o custom-columns=NAME:.metadata.name,NODE:.spec.nodeName --no-headers
+
+# Save the columns spec to a file and reuse:
+cat > cols.txt <<EOF
+NAME      .metadata.name
+NODE      .spec.nodeName
+STATUS    .status.phase
+EOF
+oc get pods -n openshift-monitoring -o custom-columns-file=cols.txt
+
+Gotcha — array indexing in custom columns: for containers[0].image use brackets, not dots:
+
+bashoc get pods -n openshift-monitoring \
+  -o custom-columns=NAME:.metadata.name,IMAGE:.spec.containers[0].image
+
+</details>
+
+Step 3 — List only pods with label app.kubernetes.io/component=prometheus
+
+<details>
+<summary>💡 Solution</summary>
+bashoc get pods -n openshift-monitoring -l app.kubernetes.io/component=prometheus
+
+Output (typical):
+
+NAME                READY   STATUS    RESTARTS   AGE
+prometheus-k8s-0    6/6     Running   0          2d
+prometheus-k8s-1    6/6     Running   0          2d
+
+Other selector forms to memorize:
+
+bash# Two labels (AND)
+oc get pods -n openshift-monitoring \
+  -l app.kubernetes.io/component=prometheus,app.kubernetes.io/instance=k8s
+
+# Label exists (any value)
+oc get pods -n openshift-monitoring -l app.kubernetes.io/component
+
+# Label does NOT equal
+oc get pods -n openshift-monitoring -l 'app.kubernetes.io/component!=alertmanager'
+
+# Set-based: in / notin
+oc get pods -n openshift-monitoring \
+  -l 'app.kubernetes.io/component in (prometheus,alertmanager)'
+
+# Negate a label (NOT present)
+oc get pods -n openshift-monitoring -l '!app.kubernetes.io/component'
+
+Field selectors (different mechanism, not labels — for status, phase, nodename):
+
+bashoc get pods -A --field-selector=status.phase=Running
+oc get pods -A --field-selector=spec.nodeName=worker-0
+
+</details>
+
+Step 4 — Get the image of the first container of each prometheus pod (jsonpath)
+
+<details>
+<summary>💡 Solution</summary>
+bashoc get pods -n openshift-monitoring \
+  -l app.kubernetes.io/component=prometheus \
+  -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.spec.containers[0].image}{"\n"}{end}'
+
+Output:
+
+prometheus-k8s-0   quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:...
+prometheus-k8s-1   quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:...
+
+Anatomy of the jsonpath expression:
+
+FragmentMeaning{range .items[*]} … {end}iterate over each item in the list{.metadata.name}print the pod's name{"\t"}literal tab{.spec.containers[0].image}image of the first container{"\n"}literal newline
+
+Common variants:
+
+bash# All container images (not just [0])
+oc get pods -n openshift-monitoring \
+  -l app.kubernetes.io/component=prometheus \
+  -o jsonpath='{range .items[*]}{.metadata.name}{":"}{range .spec.containers[*]}{" "}{.image}{end}{"\n"}{end}'
+
+# Pod IP and node, one pod per line
+oc get pods -n openshift-monitoring \
+  -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.status.podIP}{"\t"}{.spec.nodeName}{"\n"}{end}'
+
+# Single pod, single field (no range needed)
+oc get pod prometheus-k8s-0 -n openshift-monitoring \
+  -o jsonpath='{.spec.containers[0].image}{"\n"}'
+
+Gotcha — go-template vs jsonpath: OpenShift docs and oc explain examples sometimes use -o go-template=.... Either works; jsonpath is shorter for typical querying. Don't mix syntaxes — go-template uses {{ }} and range/end from Go's text/template.
+
+</details>
+
+---
 ### Lab 1.3 — Imperative → declarative (15 min)
 
 1. `oc create deployment web --image=quay.io/openshifttest/hello-openshift:1.2.0 --replicas=2 --dry-run=client -o yaml > web.yaml`
