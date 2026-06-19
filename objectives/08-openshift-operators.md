@@ -1,4 +1,4 @@
-# Objective 8 — Manage OpenShift Operators
+# Objective 8 - Manage OpenShift Operators
 
 > **Exam study points:**
 > - Install an operator
@@ -7,9 +7,7 @@
 
 In OCP 4.18, almost every cluster service (logging, monitoring, GitOps, Pipelines, Service Mesh, Cert Manager, Quay…) is delivered as an **Operator**, managed by the **Operator Lifecycle Manager (OLM)**.
 
----
-
-## §1 — OLM mental model
+## §1 - OLM mental model
 
 ```
 [OperatorHub catalog]                    ← CatalogSource (catalog of packaged operators)
@@ -30,7 +28,7 @@ In OCP 4.18, almost every cluster service (logging, monitoring, GitOps, Pipeline
 [Custom Resources (CRs)]                 ← e.g. Kafka, ArgoCD, Quay…
 ```
 
-Each layer is its own Kubernetes resource — you can `oc get` them all:
+Each layer is its own Kubernetes resource - you can `oc get` them all:
 
 ```bash
 oc get catalogsources -n openshift-marketplace
@@ -41,7 +39,7 @@ oc get installplans -A
 oc get csv -A
 ```
 
-## §2 — Where operators get scoped
+## §2 - Where operators get scoped
 
 Two kinds of `OperatorGroup`:
 
