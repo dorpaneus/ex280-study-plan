@@ -12,7 +12,7 @@
 | 5 | Configure network security | [`05-network-security.md`](./05-network-security.md) |
 | 6 | Expose non-HTTP/SNI applications | [`06-expose-non-http-sni.md`](./06-expose-non-http-sni.md) |
 | 7 | Enable developer self-service | [`07-developer-self-service.md`](./07-developer-self-service.md) |
-| 8 | Manage OpenShift operators | [`08-openshift-operators.md`](./08-openshift-operators.md) |
+| 8 | Manage OpenShift operators | [`08-openshift-operators.md`](objectives/08-openshift-operators.md) |
 | 9 | Configure application security | [`09-application-security.md`](./09-application-security.md) |
 | ★ | **Supplement: Storage (PV/PVC/SC)** - dropped from formal 4.18 objectives but still surfaces in stateful-app tasks | [`10-storage-supplement.md`](./10-storage-supplement.md) |
 
