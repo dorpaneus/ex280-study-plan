@@ -48,9 +48,9 @@ Two kinds of `OperatorGroup`:
 | **AllNamespaces** | The operator watches all namespaces. Operator pod lives in `openshift-operators` (which already has a built-in AllNamespaces group). |
 | **OwnNamespace / SingleNamespace** | Operator watches only one (or a list). You create a dedicated namespace + OperatorGroup. |
 
-> Some operators only support one mode (the CSV declares supported modes). The web console enforces this; the CLI doesn't — be careful.
+> Some operators only support one mode (the CSV declares supported modes). The web console enforces this; the CLI doesn't - be careful.
 
-## §3 — Install an operator (Console)
+## §3 - Install an operator (Console)
 
 The fast path on exam day if available:
 
@@ -63,7 +63,7 @@ The fast path on exam day if available:
    - **Approval strategy** (Automatic / Manual)
 5. Wait for `Succeeded` on the CSV.
 
-## §4 — Install an operator (CLI)
+## §4 - Install an operator (CLI)
 
 The exam may force CLI. Three resources:
 
@@ -136,13 +136,13 @@ oc get installplan -n my-op
 oc patch installplan install-xxxx -n my-op --type=merge -p '{"spec":{"approved":true}}'
 ```
 
-This is also how you control **operator upgrades** — same flow, but for the next CSV.
+This is also how you control **operator upgrades** - same flow, but for the next CSV.
 
-## §5 — Uninstall / delete an operator
+## §5 - Uninstall / delete an operator
 
 Two stages:
 
-### Stage A — Uninstall (stop OLM from re-installing it)
+### Stage A - Uninstall (stop OLM from re-installing it)
 
 ```bash
 # 1. Delete the Subscription
@@ -153,7 +153,7 @@ oc get csv -n openshift-operators | grep web-terminal
 oc delete csv web-terminal.v1.x.y -n openshift-operators
 ```
 
-### Stage B — Clean up CRs, CRDs, OperatorGroup, namespace
+### Stage B - Clean up CRs, CRDs, OperatorGroup, namespace
 
 ```bash
 # Delete any Custom Resources you created (e.g. WebTerminal instances)
@@ -165,9 +165,9 @@ oc delete operatorgroup -n my-op --all
 oc delete namespace my-op
 ```
 
-> ⚠️ **The web console "Uninstall" button only does Stage A** — CRDs and CRs stick around. On the exam, *fully* delete unless the prompt says otherwise.
+> ⚠️ **The web console "Uninstall" button only does Stage A** - CRDs and CRs stick around. On the exam, *fully* delete unless the prompt says otherwise.
 
-## §6 — Updating an operator
+## §6 - Updating an operator
 
 Two ways:
 
@@ -184,7 +184,7 @@ oc patch installplan <name> -n openshift-operators --type=merge -p '{"spec":{"ap
 oc get csv -n openshift-operators -w
 ```
 
-## §7 — Catalog sources (where operators come from)
+## §7 - Catalog sources (where operators come from)
 
 Default catalogs in 4.18:
 
@@ -211,7 +211,7 @@ spec:
       disabled: true
 ```
 
-## §8 — A concrete example: install OpenShift Pipelines (Tekton)
+## §8 - A concrete example: install OpenShift Pipelines (Tekton)
 
 ```yaml
 # subscription-pipelines.yaml
@@ -233,8 +233,6 @@ oc apply -f subscription-pipelines.yaml
 oc get csv -n openshift-operators -w        # wait for Succeeded
 oc get pods -n openshift-pipelines          # operator-installed namespace
 ```
-
----
 
 ## 🧪 Labs
 
