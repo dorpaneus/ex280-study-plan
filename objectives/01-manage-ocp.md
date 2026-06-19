@@ -331,7 +331,7 @@ This lab walks through the four moments in a project's life: create, inspect, po
 Prerequisites: logged in as cluster-admin (or any user with self-provisioner). `oc` CLI version close to 4.18.
 
 1. Create a project `lab11`.
-2. Show its annotations: `oc get project lab11 -o yaml` — note `openshift.io/requester`.
+2. Show its annotations: `oc get project lab11 -o yaml` - note `openshift.io/requester`.
 3. Switch to it and create a pod from `quay.io/openshifttest/hello-openshift:1.2.0`.
 4. Delete the project; wait for `Terminating` to finish.
 
